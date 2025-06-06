@@ -51,9 +51,21 @@ module.exports = {
       const result = choices[Math.floor(Math.random() * choices.length)];
       const count = updateUserState(interaction.user.id, result.type);
 
-      let extraText = result.label;
-      if (result.type === 'seng' && count === 2) extraText += '\n✅ 你已獲得兩個聖桮！';
-      if (result.type === 'seng' && count === 3) extraText += '\n🎉 三聖桮完成！神明應允！';
+      let extraText = '';
+
+if (result.type === 'seng') {
+  if (count === 1) {
+    extraText = `${interaction.user.toString()} 獲得 🟢 聖桮！`;
+  } else {
+    extraText = `${interaction.user.toString()} 獲得 [${count}個]🟢 聖桮！`;
+    if (count === 3) {
+      extraText += `\n🎉 三聖桮完成！神明應允！`;
+    }
+  }
+} else {
+  extraText = `${interaction.user.toString()} 獲得 ${result.label}`;
+}
+
 
       await interaction.reply({
         content: extraText,
