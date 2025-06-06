@@ -69,7 +69,7 @@ if (result.type === 'seng') {
 
       await interaction.reply({
         content: extraText,
-        files: [`./assets/${result.image}`],
+        files: [`./assets/poahpoe/${result.image}`],
         components: [
           {
             type: 1,
